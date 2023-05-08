@@ -13,7 +13,7 @@ import pyshorteners
 @csrf_exempt
 def url_list(request):
     """
-    Create a new url.
+    Create a new, short url.
     """
 
     if request.method == 'POST':
@@ -22,12 +22,11 @@ def url_list(request):
         if serializer.is_valid():
             serializer.save()
 
-            response = {
-                'short_url': 'www.wp.pl'
-            }
+            shortener = pyshorteners.Shortener()
+            short_url = shortener.tinyurl.short(data['url'])
 
-            return JsonResponse(serializer.data, status=201)
+            response = serializer.data
+            response.update({'short_url': short_url})
+
+            return JsonResponse(response, status=201)
         return JsonResponse(serializer.errors, status=400)
-
-# shortener = pyshorteners.Shortener()
-# short_url = shortener.tinyurl.short(urls["url"])
