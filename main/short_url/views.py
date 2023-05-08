@@ -7,16 +7,18 @@ import pyshorteners
 
 
 @csrf_exempt
-def url_list(request, pk=None):
+def url_list(request):
     """
-    Get urls by id.
+    Get long urls by short_url.
     Create a new, short url.
     """
 
     if request.method == 'GET':
-        url = Url.objects.get(pk=pk)
-        serializer = UrlSerializer(url)
-        return JsonResponse(serializer.data)
+        if request.GET.get('short_url') is not None:
+            short_url = request.GET.get('short_url')
+            queryset = Url.objects.all().values('url', 'short_url', ).filter(short_url=short_url)
+            data = list(queryset)
+            return JsonResponse(data, safe=False)
 
     if request.method == 'POST':
         data = JSONParser().parse(request)
