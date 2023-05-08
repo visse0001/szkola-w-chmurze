@@ -11,6 +11,12 @@ An application that allows users to send a long url and receive url's short vers
 - Install dependencies
 `pip install -r requirements.txt`
 
+## Migrate db:
+`python3 manage.py makemigrations` <br/>
+`python3 manage.py migrate`
+
+## Create an admin account:
+`python manage.py createsuperuser`
 
 ## Runserver
 
