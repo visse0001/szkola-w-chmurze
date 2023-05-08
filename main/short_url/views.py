@@ -18,7 +18,9 @@ def url_list(request):
             short_url = request.GET.get('short_url')
             queryset = Url.objects.all().values('url', 'short_url', ).filter(short_url=short_url)
             data = list(queryset)
-            return JsonResponse(data, safe=False)
+            if data:
+                return JsonResponse(data, safe=False)
+            return JsonResponse([{'results': 'Long url not found'}], safe=False)
 
     if request.method == 'POST':
         data = JSONParser().parse(request)
