@@ -22,3 +22,6 @@ An application that allows users to send a long url and receive url's short vers
 
 `cd main` <br/>
 `python manage.py runserver`
+
+## How to test via Postman
+Attached `szkola-w-chmurze.postman_collection.json` file.
