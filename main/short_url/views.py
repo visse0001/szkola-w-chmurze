@@ -18,15 +18,15 @@ def url_list(request):
 
     if request.method == 'POST':
         data = JSONParser().parse(request)
+
+        shortener = pyshorteners.Shortener()
+        short_url = shortener.tinyurl.short(data['url'])
+
+        data.update({"short_url": short_url})
+
         serializer = UrlSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
 
-            shortener = pyshorteners.Shortener()
-            short_url = shortener.tinyurl.short(data['url'])
-
-            response = serializer.data
-            response.update({'short_url': short_url})
-
-            return JsonResponse(response, status=201)
+            return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)

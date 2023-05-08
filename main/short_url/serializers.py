@@ -7,4 +7,4 @@ import pyshorteners
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Url
-        fields = ['id', 'created', 'url']
+        fields = ['id', 'created', 'url', 'short_url']
