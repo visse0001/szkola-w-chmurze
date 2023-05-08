@@ -10,3 +10,6 @@ db.sqlite3
 
 # Environments
 venv/
+
+# Pycharm
+.idea
