@@ -8,8 +8,18 @@
 		{
 			"name": "Generate short url",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"https://www.django-rest-framework.org/tutorial/2-requests-and-responses/\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/shrt"
 			},
 			"response": []
 		},
@@ -17,7 +27,27 @@
 			"name": "Get long url by short url passed by params",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/shrt?short_url=https://tinyurl.com/2qvrobtu",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"shrt"
+					],
+					"query": [
+						{
+							"key": "short_url",
+							"value": "https://tinyurl.com/2qvrobtu"
+						}
+					]
+				}
 			},
 			"response": []
 		}
