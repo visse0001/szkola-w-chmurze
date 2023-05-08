@@ -10,3 +10,9 @@ An application that allows users to send a long url and receive url's short vers
 `source venv/bin/activate`
 - Install dependencies
 `pip install -r requirements.txt`
+
+
+## Runserver
+
+`cd main` <br/>
+`python manage.py runserver`
